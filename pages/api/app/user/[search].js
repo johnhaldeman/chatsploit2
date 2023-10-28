@@ -4,8 +4,8 @@ import { findUser } from '../../../../lib/user'
 
 export default async function handler(req, res) {
     try {
-        console.log("CHECKING USERS")
         const session = await getLoginSession(req)
+        console.log("HEYA:" + JSON.stringify(session));
         const user = (session && (await findUser(session))) ?? null
         if( !session || !user ){
             res.status(401).end('Authentication token is invalid, please log in')

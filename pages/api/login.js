@@ -22,7 +22,8 @@ export default nextConnect()
     try {
       const user = await authenticate('local', req, res)
       // session is the payload to save in the token, it may contain basic info about the user
-      const session = { ...user }
+      console.log("SETTING FALSE")
+      const session = { ...user, totp_success: false }
 
       await setLoginSession(res, session)
 
@@ -32,3 +33,4 @@ export default nextConnect()
       res.status(401).send(error.message)
     }
   })
+  
